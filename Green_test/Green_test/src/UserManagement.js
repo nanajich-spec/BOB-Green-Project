@@ -10,6 +10,7 @@ import { Dialog } from 'primereact/dialog';
 import { Tag } from 'primereact/tag';
 import { Dropdown } from 'primereact/dropdown';
 import './UserManagement.css';
+import { USE_MOCK_DATA, mockUsers } from './mockDashboardData';
 
 const UserManagement = () => {
   const [loginUser, setLoginUser] = useState([]);
@@ -24,7 +25,13 @@ const UserManagement = () => {
 
   useEffect(() => {
     const userDet = JSON.parse(window.sessionStorage.getItem("userDet"));
-    setLoginUser(userDet);
+    setLoginUser(userDet || { userid: 'ADMIN', empname: 'Admin User' });
+
+    if (USE_MOCK_DATA) {
+      setUsers(mockUsers);
+      setFilteredUsers(mockUsers.filter(u => !u.deleted));
+      return;
+    }
 
     axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/users-to-verify`)
       .then((response) => {
@@ -33,7 +40,9 @@ const UserManagement = () => {
         setFilteredUsers(activeUser);
       })
       .catch(() => {
-        toast.current.show({ severity: 'error', summary: 'Error', detail: 'Failed to fetch users' });
+        console.error('Failed to fetch users, using mock data');
+        setUsers(mockUsers);
+        setFilteredUsers(mockUsers.filter(u => !u.deleted));
       });
   }, []);
 
@@ -44,6 +53,29 @@ const UserManagement = () => {
     }
     setErrorMessage('');
     try {
+      if (USE_MOCK_DATA) {
+        const newUser = {
+          userid: userId.toUpperCase(),
+          empname: 'Mock Employee ' + userId,
+          designation: 'Manager',
+          branchAlpha: 'FORT',
+          branchSol: '1001',
+          addedBy: loginUser?.userid,
+          addedOn: new Date().toISOString(),
+          verify: '',
+          enable: '',
+          role: '',
+          region: 'Mumbai',
+          zone: 'Western Zone',
+          regionAlpha: 'MUMB',
+          zoneAlpha: 'WEST',
+          currentOrg: 'BOB',
+          currentOrgType: 'Bank',
+        };
+        setUserData(newUser);
+        setShowDialog(true);
+        return;
+      }
       const hrmsData = await axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/sms/getHrmsUserData?username=${userId}`);
       const solMaster = await axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/sms/getAllSolMasterDataByBrSolid?solid=${hrmsData.data.curr_sol_id}`);
 
@@ -75,6 +107,15 @@ const UserManagement = () => {
 
   const handleSave = async () => {
     try {
+      if (USE_MOCK_DATA) {
+        const saved = { ...userData, role: userData.role || 'maker', enable: 'Y' };
+        setUsers(prev => [...prev, saved]);
+        setFilteredUsers(prev => [...prev, saved]);
+        toast.current.show({ severity: 'success', summary: 'Success', detail: 'User added successfully (Mock)', life: 3000 });
+        setUserId('');
+        setShowDialog(false);
+        return;
+      }
       const response = await axios.post('https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/userDataSave', userData, {
         headers: { 'Content-Type': 'application/json' },
       });
@@ -97,12 +138,17 @@ const UserManagement = () => {
   };
 
   const handleRemove = (rowData) => {
+    if (USE_MOCK_DATA) {
+      toast.current.show({ severity: 'success', summary: 'Success', detail: 'User deactivated successfully (Mock)' });
+      updateUserStatus(rowData.userid, 'N');
+      return;
+    }
     const payload = {
       userid: rowData.userid,
       modifiedBy: loginUser.userid
     };
 
-    axios.post(`http://172.16.182.177:8080/green-project/api/v1/deleteUser`, payload)
+    axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/deleteUser`, payload)
       .then(() => {
         toast.current.show({ severity: 'success', summary: 'Success', detail: 'User deactivated successfully' });
         updateUserStatus(rowData.userid, 'N');
@@ -113,12 +159,17 @@ const UserManagement = () => {
   };
 
   const handleEnableUser = (rowData) => {
+    if (USE_MOCK_DATA) {
+      toast.current.show({ severity: 'success', summary: 'Success', detail: 'User enabled successfully (Mock)' });
+      updateUserStatus(rowData.userid, 'Y');
+      return;
+    }
     const payload = {
       userid: rowData.userid,
       modifiedBy: loginUser.userid
     };
 
-    axios.post(`http://172.16.182.177:8080/green-project/api/v1/enableUser`, payload)
+    axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/enableUser`, payload)
       .then(() => {
         toast.current.show({ severity: 'success', summary: 'Success', detail: 'User enabled successfully' });
         updateUserStatus(rowData.userid, 'Y');

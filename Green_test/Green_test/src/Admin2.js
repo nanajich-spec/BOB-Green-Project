@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import {  useLocation } from "react-router-dom";
 import PDFDocument from './PDFDocument.js';
 import { Link } from 'react-router-dom';
+import { USE_MOCK_DATA, mockMakerAccountDetail, mockSusObjIndicators } from './mockDashboardData';
 
 const Admin2 = () => {
     const toast = useRef(null);
@@ -129,6 +130,12 @@ useEffect(() => {
     console.log(accountNumber);
     setaccountNumber(accountNumber);
     setSustainObj(susobj);
+    if (USE_MOCK_DATA) {
+      const mockData = { ...mockMakerAccountDetail, accountNumber };
+      setAccountDetails(mockData);
+      setIndicators(mockSusObjIndicators);
+      return;
+    }
     try{
       axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/${accountNumber}`).then((response) =>{
 
@@ -230,6 +237,7 @@ const downloadFile = (file) => {
   };
   // Function to send updated data to backend
   const handleSubmit1 = () => {
+  if (USE_MOCK_DATA) { alert('Comments saved successfully (Mock)'); return; }
   axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/updatedCmnt${accountNumber}`)
   .then((response)=>{
         console.log("Data saved successfully:", response.data);

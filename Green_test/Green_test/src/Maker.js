@@ -11,6 +11,7 @@ import axios from 'axios'
 import {useRef} from'react';
 import { useParams } from "react-router-dom";
 import { } from 'react-router-dom';
+import { USE_MOCK_DATA, mockMakerAccountDetail, mockSusObjIndicators, mockIndicatorComments } from './mockDashboardData';
 
 
 
@@ -205,6 +206,10 @@ const Maker = () => {
     try {
       console.log("inside general info");
       console.log("General info :",generalInfo);
+      if (USE_MOCK_DATA) {
+        toast.current.show({ severity: 'success', summary: 'Success', detail: 'General info saved successfully! (Mock)' });
+        return;
+      }
       const response = await axios.post(
         // `http://172.16.182.177:8080/green-project/api/v1/updatedPhase1/${accountNum}`,
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/updatedPhase1/${accountNum}`,
@@ -235,6 +240,10 @@ const Maker = () => {
       console.log(riskAssessmentData);
       console.log(formData.riskAssessmentData);
       //  console.log("Saving RiskAssessment")
+      if (USE_MOCK_DATA) {
+        toast.current.show({ severity: 'success', summary: 'Success', detail: 'Risk assessment saved successfully! (Mock)' });
+        return;
+      }
       const response = await axios.post(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/updatedPhase2/${accountNum}`,
         // "https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/saveRiskAssessment",
@@ -382,16 +391,20 @@ const Maker = () => {
     setAccN(formData.generalInfo.accountNumber);
     // Only call the API if the account number is provided
     if (accountNumber) {
- 
+
       try {
- 
-        const response = await axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/pickdata/${accountNumber}`);
-        console.log(response);
-        if (response.status === 200) {
-        //   throw new Error('Failed to fetch account details');
-        // }
- 
-        const data =  response.data;
+        let data;
+        if (USE_MOCK_DATA) {
+          // Use mock data instead of API call
+          data = { ...mockMakerAccountDetail, accountNumber };
+        } else {
+          const response = await axios.post(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/pickdata/${accountNumber}`);
+          console.log(response);
+          if (response.status !== 200) {
+            throw new Error('Failed to fetch account details');
+          }
+          data = response.data;
+        }
         // console.log("sus object selected :", data.susobj);
 
         if(data.susobj === ""){
@@ -459,10 +472,7 @@ const Maker = () => {
           },
         }));
  
- 
-      } else {
-      throw new Error('Failed to fetch account details');
-    }
+
 } catch (err) {
 toast.current.show({ severity: 'error', summary: 'Error', detail: err.message });
 }
@@ -516,7 +526,7 @@ toast.current.show({ severity: 'warn', summary: 'Validation', detail: 'Account N
     // formData.append('accountNumber',formData.generalInfo.accountNumber );
     try {
       setIsLoading(true); // Set loading state
- 
+      if (USE_MOCK_DATA) { alert('File uploaded successfully! (Mock)'); setIsLoading(false); return; }
       // Send the file to the backend using axios
       const response = await axios.post(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/uploadingEIA?AccountNumber=${AccN}`,
@@ -562,7 +572,7 @@ toast.current.show({ severity: 'warn', summary: 'Validation', detail: 'Account N
  
     try {
       setIsLoading(true); // Set loading state
- 
+      if (USE_MOCK_DATA) { alert('File uploaded successfully! (Mock)'); setIsLoading(false); return; }
       // Send the file to the backend using axios
       const response = await axios.post(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/uploadingLegal?AccountNumber=${AccN}`,
@@ -604,7 +614,7 @@ toast.current.show({ severity: 'warn', summary: 'Validation', detail: 'Account N
  
     try {
       setIsLoading(true); // Set loading state
- 
+      if (USE_MOCK_DATA) { alert('File uploaded successfully! (Mock)'); setIsLoading(false); return; }
       // Send the file to the backend using axios
       const response = await axios.post(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/uploadingFinancial?AccountNumber=${AccN}`,
@@ -646,7 +656,7 @@ toast.current.show({ severity: 'warn', summary: 'Validation', detail: 'Account N
  
     try {
       setIsLoading(true); // Set loading state
- 
+      if (USE_MOCK_DATA) { alert('File uploaded successfully! (Mock)'); setIsLoading(false); return; }
       // Send the file to the backend using axios
       const response = await axios.post(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/uploadingESG?AccountNumber=${AccN}`,
@@ -678,6 +688,14 @@ toast.current.show({ severity: 'warn', summary: 'Validation', detail: 'Account N
 
   useEffect(() => {
     if (accountNumber) {
+      if (USE_MOCK_DATA) {
+        // Use mock comments data
+        const updatedIndicators = indicators.map(indicator => ({
+          ...indicator,
+          [indicator.commentKey]: mockIndicatorComments[indicator.commentKey] || ""
+        }));
+        setIndicators(updatedIndicators);
+      } else {
   axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/getComments/${accountNumber}`)
         .then(response => {
   console.log("✅ Received comments from API:", response.data);
@@ -694,6 +712,7 @@ toast.current.show({ severity: 'warn', summary: 'Validation', detail: 'Account N
         .catch(error => {
           console.error("❌ Error fetching comments:", error);
         });
+      }
     }
   }, [accountNumber]);  // ✅ Only run when account number changes
   //ch
@@ -738,6 +757,12 @@ useEffect(() => {
     setIsLoading(true); // ✅ Show loading indicator
 
     try {
+        if (USE_MOCK_DATA) {
+          setIndicators(mockSusObjIndicators);
+          console.log("Using mock SusObj indicators.");
+          setIsLoading(false);
+          return;
+        }
         const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/pickdataSusObj/${value}`);
        
         console.log("API Response:", response.data); // ✅ Debugging
@@ -890,6 +915,10 @@ const handleSUSObjChange = (e) => {
       console.log("📌 Final Request Sent to API:", JSON.stringify(requestData, null, 2)); // Debugging
      
       try {
+        if (USE_MOCK_DATA) {
+          toast.current.show({ severity: 'success', summary: 'Success', detail: 'Comments saved successfully! (Mock)' });
+          return;
+        }
         const response = await axios.post(
           `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/updatedCmnt3/${formData.generalInfo?.accountNumber}`,
           requestData,

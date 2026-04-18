@@ -1,78 +1,121 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
-import { InputText } from 'primereact/inputtext';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, TextField } from '@mui/material';
 import './LoanData.css';
-import SearchBar from './components/SearchBar';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.css';
-// import 'primeicons/primeicons.css'; // Ensure PrimeIcons is imported
- 
+import { USE_MOCK_DATA, mockLoanTableData } from './mockDashboardData';
+
+const BASE_URL = 'https://noncbsuat.bankofbaroda.co.in/green-project/api/v1';
+
 const LoanData = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [globalFilter, setGlobalFilter] = useState('');
-  const navigate = useNavigate();
-  const dt = useRef(null); // Ref for DataTable
- 
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [loading, setLoading] = useState(false);
+  const dt = useRef(null);
+
+  // Load all data on mount
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/fetchLoan/{accountNum}`);
-        // const response = await axios.get(`http://172.16.182.177:8080/green-project/api/v1/ViewDetailsLoan`);
-        const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/ViewDetailsLoan`);
-        if (response.status === 200) {
-          setData(response.data);
-          setFilteredData(response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching loan accounts:', error);
-      }
-    };
- 
-    fetchData();
+    fetchAllData();
   }, []);
 
-  const handleSearch = (query) => {
-    if (query.trim() === '') {
-      setFilteredData(data);
-    } else {
-      const filtered = data.filter(account =>
-        account.accountNumber && account.accountNumber.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredData(filtered);
+  const fetchAllData = async () => {
+    setLoading(true);
+    if (USE_MOCK_DATA) {
+      setTimeout(() => {
+        setData(mockLoanTableData);
+        setFilteredData(mockLoanTableData);
+        setLoading(false);
+      }, 400);
+      return;
+    }
+    try {
+      const response = await axios.get(`${BASE_URL}/ViewDetailsLoan`);
+      if (response.status === 200) {
+        setData(response.data);
+        setFilteredData(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching loan accounts, using mock data:', error);
+      setData(mockLoanTableData);
+      setFilteredData(mockLoanTableData);
+    } finally {
+      setLoading(false);
     }
   };
- 
-  const renderHeader = () => {
-    return (
-      // <div className="table-header" style={{ padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      //   <span className="p-input-icon-left">
-      //     <InputText
-      //       style={{ width: '15rem', height: '2.5rem' }}
-      //       type="search"
-      //       value={globalFilter}
-      //       onInput={(e) => setGlobalFilter(e.target.value)}
-      //       placeholder="Global Search"
-      //     />
-      //   </span>
-        <Button
-          label="Export as CSV"
-          icon="pi pi-file"
-          className="p-button-help"
-          // style={{marginLeft:'-20px'}}
-          style={{ padding: '15px 25px', fontSize: '16px' }} // Increase size
-          onClick={() => dt.current.exportCSV()}
-        />
-      // </div>
-    );
+
+  const handleDateFilter = async () => {
+    if (!startDate || !endDate) return;
+    setLoading(true);
+    try {
+      if (USE_MOCK_DATA) {
+        // Use local filtering on mock data
+        const filtered = data.filter(item => {
+          if (!item.AccountOpenedDate) return false;
+          const itemDate = parseDate(item.AccountOpenedDate);
+          const start = new Date(startDate);
+          const end = new Date(endDate);
+          return itemDate >= start && itemDate <= end;
+        });
+        setFilteredData(filtered.length > 0 ? filtered : data);
+        setLoading(false);
+        return;
+      }
+      // API expects dd-mm-yyyy format
+      const from = formatDateForApi(startDate);
+      const to = formatDateForApi(endDate);
+      const response = await axios.post(`${BASE_URL}/ViewDetailsLoanDatewise/${to}/${from}`);
+      if (response.status === 200) {
+        setFilteredData(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching date-filtered loan data, filtering locally:', error);
+      const filtered = data.filter(item => {
+        if (!item.AccountOpenedDate) return false;
+        const itemDate = parseDate(item.AccountOpenedDate);
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        return itemDate >= start && itemDate <= end;
+      });
+      setFilteredData(filtered);
+    } finally {
+      setLoading(false);
+    }
   };
- 
+
+  const formatDateForApi = (dateStr) => {
+    // Input: yyyy-mm-dd (from HTML date input), Output: dd-mm-yyyy
+    const [y, m, d] = dateStr.split('-');
+    return `${d}-${m}-${y}`;
+  };
+
+  const parseDate = (dateStr) => {
+    if (!dateStr) return new Date(0);
+    // Try dd-mm-yyyy
+    const parts = dateStr.split('-');
+    if (parts.length === 3 && parts[0].length <= 2) {
+      return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    return new Date(dateStr);
+  };
+
+  const renderHeader = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+      <Button
+        label="Export as CSV"
+        icon="pi pi-file"
+        className="p-button-help"
+        style={{ padding: '12px 24px', fontSize: '15px' }}
+        onClick={() => dt.current.exportCSV()}
+      />
+    </Box>
+  );
+
   return (
     <div className="loan-data-container">
       <div className="loan-data-content">
@@ -80,47 +123,80 @@ const LoanData = () => {
           <Typography variant="h5" sx={{ mb: 2, color: '#0d3520', fontWeight: 800 }}>
             Loan Dashboard
           </Typography>
-          <SearchBar onSearch={handleSearch} placeholder="Search by Account Number" />
         </Box>
+
+        {/* Date Range Filter */}
+        <Box sx={{
+          display: 'flex', alignItems: 'center', gap: 2, mb: 3, p: 2,
+          background: 'linear-gradient(135deg, #ecfdf3 0%, #dcfce7 100%)',
+          borderRadius: 2, border: '1px solid rgba(34, 197, 94, 0.2)',
+          boxShadow: '0 4px 12px rgba(13, 53, 32, 0.08)',
+          flexWrap: 'wrap',
+        }}>
+          <Typography sx={{ fontWeight: 600, color: '#0d3520', minWidth: 'fit-content' }}>
+            Account Opened Date:
+          </Typography>
+          <TextField
+            label="Start Date"
+            type="date"
+            size="small"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            sx={{ backgroundColor: '#fff', borderRadius: 1, minWidth: 170 }}
+          />
+          <TextField
+            label="End Date"
+            type="date"
+            size="small"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            sx={{ backgroundColor: '#fff', borderRadius: 1, minWidth: 170 }}
+          />
+          <Button
+            label="Submit"
+            icon="pi pi-search"
+            className="p-button-success"
+            style={{ padding: '10px 24px', fontSize: '14px', backgroundColor: '#134B2A', border: 'none', borderRadius: '6px' }}
+            onClick={handleDateFilter}
+          />
+        </Box>
+
         <h1 className="loan-data-title">Details of Loan Accounts as on date (All Values in Rs. Absolute Number)</h1>
- 
+
         <DataTable
           ref={dt}
           value={filteredData}
           responsiveLayout="scroll"
-          dataKey="accountNumber"
+          dataKey="AccountNumber"
           paginator
           rows={10}
           rowsPerPageOptions={[5, 10, 25]}
-          globalFilter={globalFilter}
           header={renderHeader()}
+          loading={loading}
+          emptyMessage="No loan records found."
+          className="custom-datatable"
+          exportFilename="Loan_Dashboard"
         >
-          <Column header="S.No" body={(rowData, { rowIndex }) => rowIndex + 1} style={{ minWidth: '5rem' }} />
-          <Column field="accountName" header="Name of the Account" sortable style={{ minWidth: '8rem' }} />
-          <Column field="custId" header="Cust ID for Returning" sortable style={{ minWidth: '8rem' }} />
-          <Column field="solID" header="Sol ID" sortable style={{ minWidth: '8rem' }} />
-          <Column field="accountNumber" header="Account No." sortable style={{ minWidth: '8rem' }} />
-          <Column field="schemeCode" header="Scheme Code" sortable style={{ minWidth: '8rem' }} />
-          <Column field="activityCode" header="Activity Code" sortable style={{ minWidth: '8rem' }} />
-          <Column field="activityDescription" header="Activity Description" sortable style={{ minWidth: '8rem' }} />
-          <Column field="segment" header="Segment (Retail/ MSME/ Corporate/ Agri)" sortable style={{ minWidth: '8rem' }} />
-          <Column field="accountOpeningDate" header="Account Opening Date" sortable style={{ minWidth: '8rem' }} />
-          <Column field="dateOfDisbursement" header="Date of Disbursement" sortable style={{ minWidth: '8rem' }} />
-          <Column field="amountSanctioned" header="Amount Sanctioned" sortable style={{ minWidth: '8rem' }} />
-          <Column field="amountDisbursed" header="Amount Disbursed" sortable style={{ minWidth: '8rem' }} />
-          <Column field="amountOutstanding" header="Amount Outstanding" sortable style={{ minWidth: '8rem' }} />
-          <Column field="maturity" header="Maturity" sortable style={{ minWidth: '8rem' }} />
-          <Column field="amountTransferred" header="Amount transferred in the Loan A/c through Unscheduled Payment" sortable style={{ minWidth: '8rem' }} />
-          <Column field="dateOfTransfer" header="Date of transfer (Unscheduled Payment)" sortable style={{ minWidth: '8rem' }} />
-          <Column field="instalmentStartDate" header="Instalment Start Date" sortable style={{ minWidth: '8rem' }} />
-          <Column field="instalmentFrequency" header="Instalment Frequency" sortable style={{ minWidth: '8rem' }} />
-          <Column field="instalmentAmount" header="Instalment Amount" sortable style={{ minWidth: '8rem' }} />
+          <Column header="S.No" body={(rowData, { rowIndex }) => rowIndex + 1} style={{ minWidth: '4rem' }} />
+          <Column field="zone" header="Zone" sortable style={{ minWidth: '8rem' }} />
+          <Column field="Region" header="Region" sortable style={{ minWidth: '8rem' }} />
+          <Column field="SolDesc" header="Sol Description" sortable style={{ minWidth: '10rem' }} />
+          <Column field="SolID" header="Sol ID" sortable style={{ minWidth: '6rem' }} />
+          <Column field="CustId" header="Cust ID" sortable style={{ minWidth: '8rem' }} />
+          <Column field="AccountNumber" header="AccountNumber" sortable style={{ minWidth: '10rem' }} />
+          <Column field="AccountName" header="Name of the Account" sortable style={{ minWidth: '12rem' }} />
+          <Column field="AccountOpenedDate" header="Account Opened Date" sortable style={{ minWidth: '10rem' }} />
+          <Column field="SantionLimitDate" header="Limit Sanction Date" sortable style={{ minWidth: '10rem' }} />
+          <Column field="AggregateDisbursementAmount" header="Aggregate Disbursement Amount" sortable style={{ minWidth: '12rem' }} />
+          <Column field="OutstandingAmount" header="Outstanding Amount" sortable style={{ minWidth: '10rem' }} />
+          <Column field="Maturity" header="Maturity" sortable style={{ minWidth: '8rem' }} />
+          <Column field="AccountSegment" header="Account Segment" sortable style={{ minWidth: '10rem' }} />
         </DataTable>
       </div>
     </div>
   );
 };
- 
-export default LoanData;
- 
 
+export default LoanData;

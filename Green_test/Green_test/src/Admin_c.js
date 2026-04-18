@@ -9,6 +9,7 @@ import axiosIns from './axios';
 import {BASE} from './config';
 import SearchBar from './components/SearchBar';
 import './Admin_c.css';
+import { USE_MOCK_DATA, mockAdminReportAccounts } from './mockDashboardData';
 
 const Admin_c = () => {
 
@@ -24,6 +25,11 @@ const Admin_c = () => {
 
         const fetchAccounts = async () => {
             try {
+              if (USE_MOCK_DATA) {
+                setAccounts(mockAdminReportAccounts);
+                setFilteredAccounts(mockAdminReportAccounts);
+                return;
+              }
               // Assuming the backend API returns accounts created by the maker
 
               const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/ViewDetailsAdmin`)
@@ -61,6 +67,10 @@ const Admin_c = () => {
             // Extract account number from clicked row
              try {
                 const accountNumber = rowData.accountNumber;
+                if (USE_MOCK_DATA) {
+                  navigate("/admin2", { state: { accountNumber: accountNumber } });
+                  return;
+                }
                 const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/${accountNumber}`);
                 //  const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/"/admin/${accountNumber}`);
                 // console.log(response.data);
@@ -94,6 +104,7 @@ const Admin_c = () => {
       <div className="table-containerN">
 
         <DataTable
+          className="app-table"
           value={filteredAccounts}
           selectionMode="single"
 
@@ -107,10 +118,10 @@ const Admin_c = () => {
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Accounts"
           globalFilter={globalFilter}
         >
-          <Column header="S.No" body={(rowData, { rowIndex }) => rowIndex + 1} style={{ minWidth: "2rem" }} />
-          <Column field="accountNumber" header="Account Number" sortable style={{ minWidth: "4rem" }} />
-          <Column field="borrowerName" header="BorrowerName" sortable style={{ minWidth: "4rem" }} />
-          <Column field="status" header="Status" sortable style={{ minWidth: "4rem" }} />
+          <Column header="S.No" body={(rowData, { rowIndex }) => <span style={{ color: '#0f172a' }}>{rowIndex + 1}</span>} style={{ minWidth: "2rem" }} bodyStyle={{ color: '#0f172a' }} />
+          <Column field="accountNumber" header="Account Number" sortable style={{ minWidth: "4rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
+          <Column field="borrowerName" header="Borrower Name" sortable style={{ minWidth: "4rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
+          <Column field="status" header="Status" sortable style={{ minWidth: "4rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
           {/* <Column body={actionTemplate} style={{ minWidth: "8rem" }} /> */}
         </DataTable>
       </div>

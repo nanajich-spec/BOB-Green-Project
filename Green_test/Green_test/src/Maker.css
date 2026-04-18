@@ -438,33 +438,34 @@
   margin-left: 0;
 }
  
-Table Header Row
-.p-datatable .p-datatable-thead > tr > th {
-  background-color: #007ad9;
+/* Table Header Row - scoped to maker-datatable only */
+.maker-datatable .p-datatable .p-datatable-thead > tr > th {
+  background: linear-gradient(135deg, #166534 0%, #22c55e 100%);
   color: white;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
   padding: 12px;
 }
  
-/* Table Body Rows */
-.p-datatable .p-datatable-tbody > tr > td {
+/* Table Body Rows - scoped to maker-datatable only */
+.maker-datatable .p-datatable .p-datatable-tbody > tr > td {
   padding: 12px;
   border-bottom: 1px solid #ddd;
+  color: #0f172a !important;
 }
  
-/* Alternate Row Colors */
-.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+/* Alternate Row Colors - scoped to maker-datatable */
+.maker-datatable .p-datatable .p-datatable-tbody > tr:nth-child(even) {
   background-color: #f9f9f9;
 }
  
-/* Row Hover Effect */
-.p-datatable .p-datatable-tbody > tr:hover {
+/* Row Hover Effect - scoped to maker-datatable */
+.maker-datatable .p-datatable .p-datatable-tbody > tr:hover {
   background-color: #eef4ff;
 }
  
-/* Pagination Styling */
-.p-paginator {
+/* Pagination Styling - scoped to maker-datatable */
+.maker-datatable .p-paginator {
   padding: 12px;
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;

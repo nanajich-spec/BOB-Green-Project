@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import axios from 'axios'; // Assuming you're fetching data from an API
-import { useNavigate } from 'react-router-dom'; // React Router for navigation
- 
+import { useNavigate } from 'react-router-dom';
+import { USE_MOCK_DATA, mockReturnedAccounts } from './mockDashboardData';
 
 
 
@@ -19,26 +19,25 @@ const ReturnFromChecker = () => {
  
  useEffect(() => {
   const fetchData = async () => {
-    
+    if (USE_MOCK_DATA) {
+      setData(mockReturnedAccounts);
+      return;
+    }
     try {
-      
       const response = await axios.get(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/ViewDetailsReturn`,
-        //  `http://172.16.182.177:8080/green-project/api/v1/ViewDetailsReturn`,
-      )
-
+      );
       console.log(response.data);
       if (response.status === 200) {
-        // ✅ Filter only rejected accounts
         const returnedAccounts = response.data.filter(
           (account) => account.status === "Queried By Checker"
         );
-
-        console.log("accounts :" , returnedAccounts);
+        console.log("accounts :", returnedAccounts);
         setData(returnedAccounts);
       }
     } catch (error) {
-      console.error("Error fetching returned accounts:", error);
+      console.error("Error fetching returned accounts, using mock data:", error);
+      setData(mockReturnedAccounts);
     }
   };
 
@@ -78,15 +77,16 @@ const ReturnFromChecker = () => {
           >
             <Column
               header="S.No"
-              body={(rowData, { rowIndex }) => rowIndex + 1}
+              body={(rowData, { rowIndex }) => <span style={{ color: '#0f172a' }}>{rowIndex + 1}</span>}
               style={{ minWidth: "5rem" }}
+              bodyStyle={{ color: '#0f172a' }}
             /> 
       
-        <Column field="accountNumber" header="Account Number" sortable style={{ minWidth: "8rem" }}/>
-        <Column field="borrowerName" header="Borrower Name" sortable style={{ minWidth: "8rem" }}/>
-        <Column field="returnCheckerID" header="Checker Id" sortable style={{ minWidth: "8rem" }} />
+        <Column field="accountNumber" header="Account Number" sortable style={{ minWidth: "8rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
+        <Column field="borrowerName" header="Borrower Name" sortable style={{ minWidth: "8rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
+        <Column field="returnCheckerID" header="Checker Id" sortable style={{ minWidth: "8rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
         {/* <Column field="reasonForReturning" header="Reason for Returning" sortable style={{ minWidth: "8rem" }}/> */}
-        <Column field="status" header="Status" sortable style={{ minWidth: "8rem" }}/>
+        <Column field="status" header="Status" sortable style={{ minWidth: "8rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
 
       </DataTable>
  

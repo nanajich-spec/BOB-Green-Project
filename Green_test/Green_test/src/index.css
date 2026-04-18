@@ -426,3 +426,40 @@ pre {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* ============================================================
+   NUCLEAR TABLE TEXT VISIBILITY FIX
+   Ensures PrimeReact DataTable body text is ALWAYS visible
+   regardless of theme overrides. This block MUST stay at the
+   bottom of this file so it loads after PrimeReact theme CSS.
+   ============================================================ */
+.p-datatable .p-datatable-tbody > tr > td,
+.p-datatable .p-datatable-tbody > tr.p-selectable-row > td,
+.p-datatable .p-datatable-tbody > tr.p-highlight > td,
+.p-datatable .p-datatable-tbody > tr.p-row-odd > td,
+.p-datatable .p-datatable-tbody > tr.p-row-even > td,
+.p-datatable.p-datatable-selectable .p-datatable-tbody > tr.p-selectable-row > td,
+.p-datatable.p-datatable-selectable .p-datatable-tbody > tr.p-selectable-row:not(.p-highlight):not(.p-datatable-emptymessage):hover > td {
+  color: #0f172a !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.p-datatable .p-datatable-tbody > tr,
+.p-datatable .p-datatable-tbody > tr.p-selectable-row,
+.p-datatable.p-datatable-selectable .p-datatable-tbody > tr.p-selectable-row:not(.p-highlight):not(.p-datatable-emptymessage):hover {
+  color: #0f172a !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight > td {
+  color: #4338ca !important;
+  background: #eef2ff !important;
+}
+
+/* Force green gradient on ALL DataTable headers (override blue from any legacy CSS) */
+.p-datatable .p-datatable-thead > tr > th {
+  background: linear-gradient(135deg, #166534 0%, #22c55e 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+}

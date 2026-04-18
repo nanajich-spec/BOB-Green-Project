@@ -12,6 +12,7 @@ import {useRef} from'react';
 import './Checker1.css';
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { USE_MOCK_DATA, mockMakerAccountDetail, mockSusObjIndicators } from './mockDashboardData';
 
 const Checker1 = () => {
     const toast = useRef(null);
@@ -114,6 +115,14 @@ useEffect(() => {
     setaccountNumber(accountNumber);
     setSustainObj(susobj);
     
+    if (USE_MOCK_DATA) {
+      // Use mock data instead of API call
+      const mockData = { ...mockMakerAccountDetail, accountNumber };
+      setAccountDetails(mockData);
+      setIndicators(mockSusObjIndicators);
+      return;
+    }
+
     try{
       axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/${accountNumber}`).then((response) =>{
 
@@ -248,6 +257,7 @@ const downloadFile = (file) => {
     console.log(generalInfo);
     try {
       console.log("inside general info");
+      if (USE_MOCK_DATA) { toast.current.show({ severity: 'success', summary: 'Success', detail: 'General info saved successfully! (Mock)' }); return; }
       const response = await axios.post(
         // `http://172.16.182.177:8080/green-project/api/v1/updatedPhase1/${accountNum}`,
          `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/updatedPhase1/${accountNum}`,
@@ -274,6 +284,7 @@ const downloadFile = (file) => {
       console.log(riskAssessmentData);
       console.log(formData.riskAssessmentData);
       //  console.log("Saving RiskAssessment")
+      if (USE_MOCK_DATA) { toast.current.show({ severity: 'success', summary: 'Success', detail: 'Risk assessment saved successfully! (Mock)' }); return; }
       const response = await axios.post(
         `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/updatedPhase2/${accountNum}`,
       
@@ -406,6 +417,12 @@ const steps = [
                   console.log("RequestData:",requestData);
                   
                   // Make API call to submit the decision
+                  if (USE_MOCK_DATA) {
+                    toast.current.show({ severity: 'success', summary: 'Success', detail: 'Decision submitted successfully! (Mock)' });
+                    resetForm();
+                    setLoading(false);
+                    return;
+                  }
                   const response = await axios.post(
                     `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/checker/${accountNumber}`,
       

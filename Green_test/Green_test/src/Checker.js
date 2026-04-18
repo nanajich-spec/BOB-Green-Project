@@ -7,6 +7,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { Box, Typography } from '@mui/material';
 import SearchBar from './components/SearchBar';
+import { USE_MOCK_DATA, mockCheckerAccounts } from './mockDashboardData';
 
 
 
@@ -21,18 +22,22 @@ const Checker = () => {
 
   useEffect(() => {
     const fetchAccounts = async () => {
+      if (USE_MOCK_DATA) {
+        setAccounts(mockCheckerAccounts);
+        setFilteredAccounts(mockCheckerAccounts);
+        return;
+      }
       try {
-        // Assuming the backend API returns accounts created by the maker
-        const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/ViewDetails`)
-        // console.log(response);
+        const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/ViewDetails`);
         console.log("Fetched Accounts:", response.data);
         if (response.status === 200) {
-        setAccounts(response.data);
-        setFilteredAccounts(response.data);
-        // Set the data to state
-        
-      }} catch (error) {
-        console.error("Error fetching accounts:", error);
+          setAccounts(response.data);
+          setFilteredAccounts(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching accounts, using mock data:", error);
+        setAccounts(mockCheckerAccounts);
+        setFilteredAccounts(mockCheckerAccounts);
       }
     };
 
@@ -53,22 +58,22 @@ const Checker = () => {
 
 
   const handleRowClick = async (rowData) => {
-   // Extract account number from clicked row
+    const accountNumber = rowData.accountNumber;
+    if (USE_MOCK_DATA) {
+      navigate("/Checker1", { state: { accountNumber: accountNumber } });
+      return;
+    }
     try {
-      const accountNumber = rowData.accountNumber;
       const response = await axios.get(`https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/${accountNumber}`);
-      // console.log(response.data);
-
       console.log("Fetched Account Details:", response.data);
       if (response.status === 200 && response.data) {
-      navigate("/Checker1", { state: { accountNumber: accountNumber } }); // ✅ Pass API response to next page
+        navigate("/Checker1", { state: { accountNumber: accountNumber } });
       }
-        
-
-      } catch (error) {
+    } catch (error) {
       console.error("Error fetching account details:", error);
-      }
-    };
+      navigate("/Checker1", { state: { accountNumber: accountNumber } });
+    }
+  };
   
   //ch
   const handleFilterChange=(status)=>{
@@ -98,11 +103,12 @@ const Checker = () => {
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Accounts"
           globalFilter={globalFilter}
+          rowClassName={() => 'visible-row'}
         >
-          <Column header="S.No" body={(rowData, { rowIndex }) => rowIndex + 1} style={{ minWidth: "2rem" }} />
-          <Column field="accountNumber" header="Account Number" sortable style={{ minWidth: "4rem" }} />
-          <Column field="borrowerName" header="BorrowerName" sortable style={{ minWidth: "4rem" }} />
-          <Column field="status" header="Status" sortable style={{ minWidth: "4rem" }} />
+          <Column header="S.No" body={(rowData, { rowIndex }) => <span style={{ color: '#0f172a' }}>{rowIndex + 1}</span>} style={{ minWidth: "2rem" }} bodyStyle={{ color: '#0f172a' }} />
+          <Column field="accountNumber" header="Account Number" sortable style={{ minWidth: "4rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
+          <Column field="borrowerName" header="Borrower Name" sortable style={{ minWidth: "4rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
+          <Column field="status" header="Status" sortable style={{ minWidth: "4rem" }} bodyStyle={{ color: '#0f172a', fontWeight: 500 }} />
         </DataTable>
       </div>
     </div>

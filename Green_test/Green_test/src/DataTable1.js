@@ -3,6 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import axios from 'axios'; // Assuming you're fetching data from an API
 import { useNavigate } from 'react-router-dom'; // React Router for navigation
+import { USE_MOCK_DATA, mockAdminAccounts } from './mockDashboardData';
  
  
 const ReturnFromAdminDataTable = () => {
@@ -13,6 +14,12 @@ const ReturnFromAdminDataTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        if (USE_MOCK_DATA) {
+          // Use mock data filtered for "Queried By Admin" status
+          const mockReturned = mockAdminAccounts.map(a => ({...a, status: 'Queried By Admin'})).slice(0, 3);
+          setData(mockReturned);
+          return;
+        }
       
         const response = await axios.get(
           `https://noncbsuat.bankofbaroda.co.in/green-project/api/v1/ViewDetailsAdmin`,

@@ -84,17 +84,12 @@
   /* Style for the Export Button */
 .p-button-help {
   background: linear-gradient(120deg, #398507, #aadf86);
-  color: white !important; /* White text */
+  color: white !important;
   border-radius: 5px !important;
   font-weight: bold;
   padding: 10px 15px;
   border: none !important;
-
   transition: background-color 0.3s ease, transform 0.2s ease;
-margin-right:-1200px;
-margin-bottom: 2%;
-
-
 }
 
 /* Hover Effect */
