@@ -19,6 +19,7 @@ import {
   Login
 } from './pages';
 import PDFDocument from './PDFDocument.js';
+import ReturnFromAdminDataTable from './DataTable1.js';
 import { AppThemeProvider } from './theme/AppThemeProvider.js';
 import { AppLayoutProvider } from './layout/AppLayoutContext.js';
 import AppShell from './layout/AppShell.js';
@@ -61,7 +62,7 @@ function App() {
 
                         <Route path='/existingrecords' element={<MakerExisting />} />
                         <Route path='/datatable' element={<MakerDetails />} />
-                        <Route path='/returnfromadmin' element={<MakerDetails />} />
+                        <Route path='/returnfromadmin' element={<ReturnFromAdminDataTable />} />
                         <Route path='/Maker' element={<MakerNew />} />
                         <Route path='/checker' element={<CheckerPending />} />
                         <Route path='/checker1' element={<CheckerDetails />} />

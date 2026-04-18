@@ -1,3 +1,13 @@
+.container1 > h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.container1 .business-title {
+  font-size: 0.95rem;
+}
+
 .file-input-container {
   display: flex;
   align-items: center;  /* Aligns items vertically */
@@ -58,7 +68,7 @@
 
 /* Title */
 .decision-title {
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: bold;
   margin: 15px 0;
 }

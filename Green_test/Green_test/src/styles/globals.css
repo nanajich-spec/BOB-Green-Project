@@ -32,6 +32,19 @@ main {
   flex: 1;
 }
 
+/* Reduce main content area page titles */
+main h1 {
+  font-size: 1.15rem;
+}
+
+main h2 {
+  font-size: 1.05rem;
+}
+
+main h3 {
+  font-size: 0.95rem;
+}
+
 /* Links */
 a {
   color: var(--color-primary);

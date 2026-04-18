@@ -12,7 +12,7 @@ const CheckerLayout = ({ children, title, breadcrumbs }) => {
         <Sidebar />
         <main style={{ flex: 1, padding: '20px', overflow: 'auto' }}>
           {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
-          {title && <h1 style={{ marginBottom: '20px' }}>{title}</h1>}
+          {title && <h1 style={{ marginBottom: '20px', fontSize: '1.25rem' }}>{title}</h1>}
           <div>
             {children}
           </div>

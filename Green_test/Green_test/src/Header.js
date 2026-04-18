@@ -85,10 +85,10 @@ const Header = () => {
 
         <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
           <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h5" sx={{ fontWeight: 800, lineHeight: 1.2 }}>
+            <Typography variant="h5" sx={{ fontWeight: 800, lineHeight: 1.2, fontSize: '1.35rem', color: '#ffffff' }}>
               BOB Green Finance Portal
             </Typography>
-            <Typography variant="caption" color="text.secondary" sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Typography variant="caption" sx={{ display: { xs: 'none', sm: 'block' }, color: 'rgba(255,255,255,0.75)' }}>
               Empowering sustainable banking
             </Typography>
           </Box>

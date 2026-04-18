@@ -219,6 +219,7 @@
     margin-top: -2rem;
     margin-left: 1rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    font-size: 0.95rem;
   }
   
   .button-container2{
@@ -508,6 +509,12 @@
   min-height: 100vh;
 }
 
+.container1 > h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
 .container1 .container2 {
   width: auto !important;
   display: flex;
@@ -550,6 +557,7 @@
   margin-top: -38px;
   margin-left: 8px;
   padding: 8px 18px;
+  font-size: 0.95rem;
 }
 
 .container1 .vertical {

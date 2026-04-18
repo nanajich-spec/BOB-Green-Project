@@ -27,7 +27,7 @@
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #94a3b8;
-  --brand-primary: #166534;
+  --brand-primary: #16a34a;
   --brand-secondary: #22c55e;
   --brand-accent: #0ea5e9;
   --border-soft: #e5e7eb;
@@ -59,8 +59,8 @@
   --font-size-sm: 0.85rem;
   --font-size-base: 0.95rem;
   --font-size-lg: 1.1rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
+  --font-size-xl: 1.15rem;
+  --font-size-2xl: 1.25rem;
   
   /* Z-Index */
   --z-dropdown: 10;
@@ -321,7 +321,7 @@ tbody tr:hover {
 }
 
 .section-title {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 800;
   color: #0d3520;
   margin: 24px 0 16px 0;
