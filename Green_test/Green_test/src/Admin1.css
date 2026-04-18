@@ -1,0 +1,579 @@
+.container1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: rgb(247, 242, 236);
+  width: 100%;
+  height: 100%;
+}
+
+/* .container2{
+  display: flex;
+  flex-direction: row;
+  /* gap: 2rem; */
+  /* margin-left: 20%; */
+  /* margin-top: 3rem; */
+  /* margin-bottom: 2rem; */
+  /* border: #398507 1px solid; */
+  /* background: linear-gradient(120deg, #c6f0aa, #ccdfc0); */
+  /* border-radius: 15px;
+  padding: 1rem 1rem;
+  width: 70%;
+  box-shadow: 0 4px 8px rgba(36, 35, 35, 0.2); */
+
+/* } */ 
+
+.business-div{
+  border: #398507 1px solid;
+  border-radius: 15px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 20px;
+}
+
+
+
+
+
+
+
+.form-group1 input{
+  width: 20rem;
+  height: 2rem;
+  padding: 4px;
+  border: 1px solid black;
+  /* border-radius: 4px; */
+  box-sizing: border-box;
+  box-align: left;
+  /*color: white;*/
+  border-radius: 8px;
+  resize: none;
+  overflow-x: scroll;
+  white-space: nowrap;
+  /* max-height: fit-content; */
+}
+
+.form-group1 select,
+.form-group1 textarea {
+
+
+  width: 100%;
+  height: auto;
+  padding: 4px;
+  border: 1px solid black;
+  /* border-radius: 4px; */
+  box-sizing: border-box;
+  box-align: left;
+  /*color: white;*/
+  border-radius: 8px;
+
+
+}
+
+.form-group1 textarea{
+  width: 100%;
+  height: 100px;
+  padding: 4px;
+  border: 1px solid black;
+  /* border-radius: 4px; */
+  box-sizing: border-box;
+  box-align: left;
+  /*color: white;*/
+  border-radius: 8px;
+  resize: none;
+  overflow-y: scroll;
+}
+
+.form-group1 input.error,
+.form-group1 select.error,
+.form-group1 textarea.error {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+
+.required-star{
+  color: red;
+}
+
+.form-group2{
+display: flex;
+flex-direction: row;
+gap:1rem;
+width:40rem;
+margin-left: 2rem;
+margin-top: 3px;
+margin-bottom: 3px;
+max-height: fit-content;
+}
+.form-group2 label {
+display: block;
+margin-bottom: 1px;
+font-weight: bold;
+text-align: left;
+width: 220%;
+
+}
+
+
+.form-group2 input{
+width: 200%;
+height: 2rem;
+padding: 4px;
+border: 1px solid black;
+/* border-radius: 4px; */
+box-sizing: border-box;
+box-align: left;
+/*color: white;*/
+border-radius: 8px;
+resize: none;
+overflow-x: scroll;
+white-space: nowrap;
+}
+
+.form-group2 select,
+.form-group2 textarea {
+
+
+width: 250%;
+height: auto;
+padding: 4px;
+border: 1px solid black;
+/* border-radius: 4px; */
+box-sizing: border-box;
+box-align: left;
+/*color: white;*/
+border-radius: 8px;
+
+
+}
+
+.form-group2 textarea{
+width: 280%;
+height: 100px;
+padding: 6px;
+border: 1px solid black;
+/* border-radius: 4px; */
+box-sizing: border-box;
+box-align: left;
+/*color: white;*/
+border-radius: 8px;
+resize: none;
+overflow-y: scroll;
+}
+
+.form-group2 input.error,
+.form-group2 select.error,
+.form-group2 textarea.error {
+border-color: red;
+}
+
+
+.NextC {
+  /* margin-top: 1rem; */
+  margin-bottom: 1rem;
+   margin-left: -28%;
+  border-radius: 12px;
+  border: none;
+  padding: 1rem 1rem;
+  color: white;
+  /* background: linear-gradient(120deg, #1e9993, #a5ebe7); */
+  background: linear-gradient(120deg, #398507, #aadf86);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-content: center;
+  height: 2.5rem;
+
+
+
+}
+
+.NextC:hover {
+
+  background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reversed gradient on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+  transform: translateY(-2px);
+  color: black;
+
+}
+
+
+.NextC:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.NextC .p-button-icon {
+  margin-left: 5px;
+}
+
+
+.business1-title{
+  background: linear-gradient(120deg, #398507, #aadf86);
+  border-radius: 25px;
+  width: 40%;
+  margin-top: -2rem;
+  margin-left: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button-container2{
+  display: flex;
+   justify-content: flex-end;
+  margin-right: 3rem;
+
+  .legal-comments-label {
+    white-space: nowrap;
+  }
+
+}
+
+.saveNext {
+  /* margin-top: 1rem; */
+  margin-bottom: 1rem;
+  font-size: medium;
+  border-radius: 20px;
+  border: none;
+  padding: 1rem 2rem;
+  color: white;
+  /* background: linear-gradient(120deg, #1e9993, #a5ebe7); */
+  background: linear-gradient(120deg, #398507, #aadf86);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-content: center;
+  height: 2.8rem;
+  width:10rem;
+  display: flex;
+  align-items: center;
+  margin-left: 1%;
+
+
+}
+
+.saveNext:hover {
+
+  background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reversed gradient on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+  transform: translateY(-2px);
+  color: black;
+}
+
+
+.saveNext:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.saveNext .p-button-icon {
+  margin-left: 5px;
+}
+
+
+
+  .button-container3 {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 35rem;
+    align-items: center;
+  height: 10px;
+   margin-top: -4.5rem;
+}
+
+.backButton {
+    /* margin-bottom: 1rem; */
+    font-size: medium;
+    border-radius: 12px;
+    border: none;
+    padding: 1rem 1.5rem;
+    color: white;
+    background: linear-gradient(120deg, #398507, #aadf86 );
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 2.8rem;
+
+}
+
+.backButton:hover {
+    color: black;
+    transform: translateY(-2px);
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+/* Container for the step navigation */
+.step-wrapper {
+width: calc(100% - 250px); /* Adjust based on your sidebar size */
+margin: 0 auto; /* Centers the wrapper */
+padding-left: 15px; /* Slight space between the sidebar */
+}
+
+.step-navigation {
+display: flex;
+justify-content: center; /* Centers the steps horizontally */
+align-items: center; /* Centers steps vertically */
+margin-bottom: 20px;
+flex-wrap: wrap; /* Ensures they wrap on smaller screens */
+}
+
+.step {
+cursor: pointer;
+padding: 12px 20px; /* Adequate padding for better spacing */
+font-size: 18px;
+font-weight: 800;
+color: #0f0707; /* Softer text color */
+border-radius: 5px;
+margin-right: 20px; /* Space between steps */
+display: flex;
+align-items: center; /* Center elements vertically */
+transition: all 0.3s ease-in-out;
+/* Removed background-color and box-shadow */
+background-color: transparent; /* No background color */
+box-shadow: none; /* No shadow effect */
+}
+
+/* Highlight the current active step */
+.step.active {
+color: #555;/* Blue text for active step */
+font-weight: bold; /* Make the active step text bold */
+}
+
+/* Hover effect for steps */
+.step:hover {
+background-color: #e7e9ff; /* Light blue hover effect */
+color:  linear-gradient(120deg, #398507, #aadf86 );/* Change text color on hover */
+/* Removed box-shadow */
+}
+
+/* Style for step number (circle) */
+.step-number {
+display: inline-block;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background: linear-gradient(120deg, #398507, #aadf86 );
+color: #fff; /* White number */
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+line-height: 30px; /* Vertically centers the number */
+margin-right: 10px;
+}
+
+/* Style for step label */
+.step-label {
+font-size: 16px; /* Clean, readable font size */
+font-weight: 600;
+margin-left: 10px; /* Space between number and label */
+transition: color 0.3s ease;
+}
+
+/* Radio Button styling */
+.step-radio {
+display: none; /* Hides the radio button */
+}
+
+/* Active state for radio button when selected */
+.step.active .step-radio:checked {
+background-color: #28a745;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+.step-wrapper {
+  width: 100%; /* Full width for small screens */
+  padding-left: 0; /* No padding on the left for mobile */
+}
+
+.step-navigation {
+  justify-content: space-evenly; /* Spread steps evenly */
+}
+
+.step {
+  padding: 10px 15px; /* Slightly reduced padding for small screens */
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.step-label {
+  font-size: 14px; /* Smaller font size for mobile */
+}
+}
+
+.required-star{
+color: red;
+}
+.button-container2 {
+display: flex;
+justify-content: center;
+margin-top: 50px;
+gap: 15px; /* Adds space between the buttons */
+margin-left: 15%;
+
+}
+
+.button-container2 .p-button {
+flex: 0 1 auto; /* Prevent buttons from stretching */
+font-size: 1.2rem; /* Increases the font size of the text inside the buttons */
+padding: 12px 24px; /* Adds padding inside the button to make it bigger */
+min-width: 100px; /* Ensures the button has a minimum width */
+
+}
+
+.button-container2 .p-button:hover {
+font-size: 1.3rem; /* Optional: Increase font size when hovered for better UX */
+}
+
+.maker-datatable .p-datatable {
+width: 90%;
+background-color: white;
+border-radius: 8px;
+overflow: hidden;
+margin-left: 5%;
+}
+
+Table Header Row
+.p-datatable .p-datatable-thead > tr > th {
+background-color: #007ad9;
+color: white;
+font-weight: bold;
+text-align: left;
+padding: 12px;
+}
+
+/* Table Body Rows */
+.p-datatable .p-datatable-tbody > tr > td {
+padding: 12px;
+border-bottom: 1px solid #ddd;
+}
+
+/* Alternate Row Colors */
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+background-color: #f9f9f9;
+}
+
+/* Row Hover Effect */
+.p-datatable .p-datatable-tbody > tr:hover {
+background-color: #eef4ff;
+}
+
+/* Pagination Styling */
+.p-paginator {
+padding: 12px;
+background-color: #f5f5f5;
+border-top: 1px solid #ddd;
+}
+
+/* File Input */
+.file-input {
+border: 1px solid #ddd;
+padding: 8px;
+border-radius: 4px;
+background: linear-gradient(120deg, #398507, #aadf86 );
+cursor: pointer;
+}
+
+.file-input:hover {
+border-color: #007bff;
+}
+/* Style for Select Dropdown */
+select {
+ width:180px;
+ 
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+ 
+  margin-bottom: 5%;
+}
+ 
+/* Style for the reject option */
+select option[value="Reject"] {
+  font-weight: bold;
+  color: red;
+}
+ 
+/* Style for Comment Box */
+.comment-box {
+  width: 100px; /* Adjust width */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;
+  background: #f9f9f9;
+}
+ 
+/* Prevents oversized reject text */
+.reject-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  max-width:100px;
+}
+ 
+/* Label Style */
+.reject-container label {
+  font-weight: bold;
+}
+
+.verticall{
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  gap: 5rem;
+}
+.vertical11, .vertical22{
+  display: flex;
+  flex-direction: column;
+  max-height: fit-content;
+  
+}
+
+.business-divv{
+  border: #3518d8 1px solid;
+  border-radius: 15px;
+  margin-left: 15%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  max-height: fit-content;
+
+} 
+
+.commentR{
+  display: flex;
+  flex-direction: column;
+ 
+}
+.commentS{
+  display: flex;
+  flex-direction: column;
+}
+.form-group.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Horizontally center label and textarea */
+  margin-bottom: 1rem;
+
+}
+ 
+.form-group.comments label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  margin-left: 30%;
+}

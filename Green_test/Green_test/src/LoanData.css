@@ -1,0 +1,111 @@
+/* LoanData.css */
+
+/* Main container for the Loan Data page */
+.loan-data-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Main content section for the loan data */
+  .loan-data-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+  }
+  
+  .loan-data-title {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+    margin-left: 0;
+  }
+  
+  /* Styling for the DataTable container */
+  .p-datatable {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  
+  /* Table header styling */
+  .p-datatable-header {
+    /* background-color: #2a3d52; */
+    color: #ffffff;
+    font-size: 16px;
+    padding: 1rem;
+  }
+  
+  .p-datatable-header .p-column-header-title {
+    font-weight: 500;
+  }
+  
+  .p-datatable .p-column-header {
+    background-color: #e0e0e0;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Styling for table rows */
+  .p-datatable tbody tr {
+    background-color: #ffffff;
+  }
+  
+  .p-datatable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .p-datatable .p-column {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  /* Make table responsive */
+  @media (max-width: 768px) {
+    .loan-data-content {
+      padding: 1rem;
+    }
+  
+    .p-datatable {
+      font-size: 12px;
+    }
+  
+    .p-datatable .p-column {
+      padding: 0.5rem;
+    }
+  }
+  
+  /* Style for the Export Button */
+.p-button-help {
+  background: linear-gradient(120deg, #398507, #aadf86);
+  color: white !important; /* White text */
+  border-radius: 5px !important;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none !important;
+
+  transition: background-color 0.3s ease, transform 0.2s ease;
+margin-right:-1200px;
+margin-bottom: 2%;
+
+
+}
+
+/* Hover Effect */
+.p-button-help:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reversed gradient on hover */
+  /* background: linear-gradient(120deg, #398507, #aadf86); */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Active/Clicked Effect */
+.p-button-help:active {
+  background-color: #004494 !important; /* Even darker blue */
+  transform: scale(0.98); /* Slight shrink effect */
+}

@@ -1,0 +1,80 @@
+.adminDash {
+
+    padding: 20px;
+  
+  }
+   
+  .adminDash .container,
+  .adminDash .container-search {
+  
+    display: flex;
+  
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+
+  }
+   
+  .error-message {
+  
+    color: red;
+  
+    margin-right: 10px;
+  
+  }
+   
+  .adminDash .input-field {
+  
+    padding: 8px;
+  
+    margin-right: 0;
+    width: min(240px, 100%);
+  
+    border: 1px solid #ccc;
+  
+    border-radius: 4px;
+   
+  
+  }
+   
+  .adminDash .button {
+  
+    background-color: #007bff;
+  
+    color: white;
+  
+    border: none;
+  
+    padding: 8px 12px;
+  
+    cursor: pointer;
+  
+    border-radius: 4px;
+  
+  }
+   
+  .adminDash .button:hover {
+  
+    background-color: #0056b3;
+  
+  }
+
+  .adminDash .container-search label {
+    margin-right: 4px;
+  }
+   
+  .dialog-content {
+  
+    display: flex;
+  
+    flex-direction: column;
+  
+    align-items: center;
+  
+  }
+ 

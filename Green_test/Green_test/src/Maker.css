@@ -1,0 +1,634 @@
+/* .line-container1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .line1 {
+    width: 50%; /* Line thickness */
+     /* height: 2px; 
+    background-color: #f86706;
+    margin: 10px 0; 
+    border-radius: 16px;
+ 
+  }  */ 
+
+  .container1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #f3f7f4;
+    width: 100%;
+    min-height: calc(100vh - 76px);
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .container2{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+  }
+
+  .business-div{
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 24px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  }
+ 
+  .vertical{
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+    gap: 40px;
+  }
+  .vertical1, .vertical2{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .form-group1{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .form-group1 label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #0f172a;
+    text-align: left;
+    letter-spacing: 0.2px;
+  }
+
+  .form-group1 input,
+  .form-group1 select,
+  .form-group1 textarea {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #0f172a;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .form-group1 input:focus,
+  .form-group1 select:focus,
+  .form-group1 textarea:focus {
+    outline: none;
+    border-color: #166534;
+    box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1);
+    background-color: #f8fafb;
+  }
+
+  .form-group1 textarea{
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+  }
+
+  .form-group1 input.error,
+  .form-group1 select.error,
+  .form-group1 textarea.error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+  }
+
+  .form-group1 input.error:focus,
+  .form-group1 select.error:focus,
+  .form-group1 textarea.error:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+  
+  .error-message {
+    color: #dc2626;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .required-star{
+    color: #ef4444;
+    font-weight: 700;
+    margin-left: 2px;
+  }
+
+  .form-group2{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .form-group2 label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #0f172a;
+    text-align: left;
+    letter-spacing: 0.2px;
+  }
+
+  .form-group2 input,
+  .form-group2 select,
+  .form-group2 textarea {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #0f172a;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .form-group2 input:focus,
+  .form-group2 select:focus,
+  .form-group2 textarea:focus {
+    outline: none;
+    border-color: #166534;
+    box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1);
+    background-color: #f8fafb;
+  }
+
+  .form-group2 textarea{
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+  }
+.NextC {
+    /* margin-top: 1rem; */
+    margin-bottom: 1rem;
+     margin-left: 0;
+    border-radius: 12px;
+    border: none;
+    padding: 1rem 1rem;
+    color: white;
+    /* background: linear-gradient(120deg, #1e9993, #a5ebe7); */
+    background: linear-gradient(120deg, #398507, #aadf86);
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    justify-content: center;  
+    height: 2.5rem;
+   
+   
+      
+  }
+
+  .NextC:hover {
+    
+    background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reversed gradient on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    transform: translateY(-2px);
+    color: black;
+  
+  }
+
+
+  .NextC:focus {
+    outline: none; 
+    border: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); 
+  }
+
+  .NextC .p-button-icon {
+    margin-left: 5px;
+  }
+
+
+  .business-title{
+    background: linear-gradient(120deg, #398507, #aadf86);
+    border-radius: 25px;
+    width: 40%;
+    margin-top: -2rem;
+    margin-left: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .button-container2{
+    display: flex;
+     justify-content: flex-end;
+    margin-right: 3rem;
+
+   
+
+  } 
+
+  .saveNext {
+    /* margin-top: 1rem; */
+    margin-bottom: 1rem;
+    font-size: medium;
+    border-radius: 20px;
+    border: none;
+    padding: 1rem 2rem;
+    color: white;
+    /* background: linear-gradient(120deg, #1e9993, #a5ebe7); */
+    background: linear-gradient(120deg, #398507, #aadf86);
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    justify-content: center;  
+    height: 2.8rem;
+    width:10rem;
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+ 
+      
+  }
+
+  .saveNext:hover {
+    
+    background: linear-gradient(45deg, #2575fc, #6a11cb); /* Reversed gradient on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    transform: translateY(-2px);
+    color: black;
+  }
+
+
+  .saveNext:focus {
+    outline: none; 
+    border: none;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); 
+  }
+
+  .saveNext .p-button-icon {
+    margin-left: 5px;
+  }
+
+ 
+    
+    .button-container3 {
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 35rem;
+      align-items: center;
+    height: 10px;
+     margin-top: -4.5rem; 
+  }
+  
+  .backButton {
+      /* margin-bottom: 1rem; */
+      font-size: medium;
+      border-radius: 12px;
+      border: none;
+      padding: 1rem 1.5rem;
+      color: white;
+      background: linear-gradient(120deg, #398507, #aadf86 );
+      cursor: pointer;
+      transition: all 0.3s ease;
+      height: 2.8rem;
+      
+  }
+  
+  .backButton:hover {
+      color: black;
+      transform: translateY(-2px);
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+/* Container for the step navigation */
+.step-wrapper {
+  width: calc(100% - 250px); /* Adjust based on your sidebar size */
+  margin: 0 auto; /* Centers the wrapper */
+  padding-left: 15px; /* Slight space between the sidebar */
+}
+
+.step-navigation {
+  display: flex;
+  justify-content: center; /* Centers the steps horizontally */
+  align-items: center; /* Centers steps vertically */
+  margin-bottom: 20px;
+  flex-wrap: wrap; /* Ensures they wrap on smaller screens */
+}
+
+.step {
+  cursor: pointer;
+  padding: 12px 20px; /* Adequate padding for better spacing */
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f0707; /* Softer text color */
+  border-radius: 5px;
+  margin-right: 20px; /* Space between steps */
+  display: flex;
+  align-items: center; /* Center elements vertically */
+  transition: all 0.3s ease-in-out;
+  /* Removed background-color and box-shadow */
+  background-color: transparent; /* No background color */
+  box-shadow: none; /* No shadow effect */
+}
+
+/* Highlight the current active step */
+.step.active {
+  color: #555;/* Blue text for active step */
+  font-weight: bold; /* Make the active step text bold */
+}
+
+/* Hover effect for steps */
+.step:hover {
+  background-color: #e7e9ff; /* Light blue hover effect */
+  color:  linear-gradient(120deg, #398507, #aadf86 );/* Change text color on hover */
+  /* Removed box-shadow */
+}
+
+/* Style for step number (circle) */
+.step-number {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, #398507, #aadf86 );
+  color: #fff; /* White number */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px; /* Vertically centers the number */
+  margin-right: 10px;
+}
+
+/* Style for step label */
+.step-label {
+  font-size: 16px; /* Clean, readable font size */
+  font-weight: 600;
+  margin-left: 10px; /* Space between number and label */
+  transition: color 0.3s ease;
+}
+
+/* Radio Button styling */
+.step-radio {
+  display: none; /* Hides the radio button */
+}
+
+/* Active state for radio button when selected */
+.step.active .step-radio:checked {
+  background-color: #28a745;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .step-wrapper {
+    width: 100%; /* Full width for small screens */
+    padding-left: 0; /* No padding on the left for mobile */
+  }
+
+  .step-navigation {
+    justify-content: space-evenly; /* Spread steps evenly */
+  }
+
+  .step {
+    padding: 10px 15px; /* Slightly reduced padding for small screens */
+  }
+
+  .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .step-label {
+    font-size: 14px; /* Smaller font size for mobile */
+  }
+}
+
+.required-star{
+  color: red;
+}
+.button-container2 {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 50px;
+  gap: 15px;
+  margin-left: 0;
+  padding: 0 20px;
+}
+
+.button-container2 .p-button {
+  flex: 0 1 auto; /* Prevent buttons from stretching */
+  font-size: 1.2rem; /* Increases the font size of the text inside the buttons */
+  padding: 12px 24px; /* Adds padding inside the button to make it bigger */
+  min-width: 100px; /* Ensures the button has a minimum width */
+
+}
+
+.button-container2 .p-button:hover {
+  font-size: 1.3rem; /* Optional: Increase font size when hovered for better UX */
+}
+
+.maker-datatable .p-datatable {
+  width: 100%;
+  background-color: white;
+  border-radius: 0;
+  overflow: hidden;
+  margin-left: 0;
+}
+ 
+Table Header Row
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: #007ad9;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px;
+}
+ 
+/* Table Body Rows */
+.p-datatable .p-datatable-tbody > tr > td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+ 
+/* Alternate Row Colors */
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+ 
+/* Row Hover Effect */
+.p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #eef4ff;
+}
+ 
+/* Pagination Styling */
+.p-paginator {
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+}
+
+/* File Input */
+.file-input {
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+  background: linear-gradient(120deg, #398507, #aadf86 );
+  cursor: pointer;
+}
+
+.file-input:hover {
+  border-color: #007bff;
+}
+
+
+ .upload-button {
+  margin-top: 3px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(120deg, #398507, #aadf86 );
+  background-color: #28a745; 
+  border: none;
+   border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+} 
+
+.upload-button:hover {
+  background-color: #218838;
+} 
+
+/* Responsive modernization overrides */
+.container1 {
+  min-height: 100vh;
+}
+
+.container1 .container2 {
+  width: auto !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.container1 .form-group1 {
+  flex: 1 1 420px;
+  width: auto;
+  min-width: 260px;
+  align-items: center;
+}
+
+.container1 .form-group1 label {
+  min-width: 210px;
+  margin: 0;
+}
+
+.container1 .form-group1 input {
+  width: 100%;
+  min-width: 180px;
+}
+
+.container1 .NextC {
+  margin-left: 0 !important;
+  margin-bottom: 0;
+}
+
+.container1 .business-div {
+  width: auto;
+  padding: 20px 18px 16px;
+}
+
+.container1 .business-title {
+  width: fit-content;
+  max-width: calc(100% - 24px);
+  margin-top: -38px;
+  margin-left: 8px;
+  padding: 8px 18px;
+}
+
+.container1 .vertical {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.container1 .vertical1,
+.container1 .vertical2 {
+  min-width: 0;
+}
+
+.container1 .form-group2 {
+  width: 100%;
+  margin: 0 0 10px;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(220px, 1.2fr);
+  align-items: center;
+}
+
+.container1 .form-group2 label {
+  width: auto;
+}
+
+.container1 .form-group2 input,
+.container1 .form-group2 select,
+.container1 .form-group2 textarea {
+  width: 100%;
+  margin-left: 0;
+}
+
+.container1 .step-wrapper {
+  width: auto;
+  padding-left: 0;
+}
+
+.container1 .step-navigation {
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.container1 .step {
+  margin-right: 0;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.container1 .button-container3 {
+  margin-left: 0;
+  margin-top: 0;
+  height: auto;
+}
+
+@media (max-width: 1200px) {
+  .container1 .vertical {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .container1 .form-group1 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .container1 .form-group1 label {
+    min-width: 0;
+  }
+
+  .container1 .form-group2 {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .container1 .business-title {
+    margin-top: -30px;
+    font-size: 1rem;
+  }
+}

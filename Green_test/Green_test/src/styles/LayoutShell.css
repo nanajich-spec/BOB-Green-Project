@@ -1,0 +1,54 @@
+.app-shell {
+  min-height: 100vh;
+  background: var(--surface-page);
+}
+
+.app-main {
+  position: relative;
+  margin-top: var(--shell-header-height);
+  margin-bottom: var(--shell-footer-height);
+  min-height: calc(100vh - var(--shell-header-height) - var(--shell-footer-height));
+  background: var(--surface-page);
+}
+
+.app-main-scroll {
+  height: calc(100vh - var(--shell-header-height) - var(--shell-footer-height));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+@media (min-width: 600px) {
+  .app-main-scroll {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 960px) {
+  .app-main-scroll {
+    padding: 24px;
+  }
+}
+
+.page-container,
+.checker-container,
+.container1 {
+  width: 100%;
+  background: transparent;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.table-containerr,
+.datatable,
+.maker-datatable,
+.Admin-datatable {
+  width: 100%;
+  background: var(--surface-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}

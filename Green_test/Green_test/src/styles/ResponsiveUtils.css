@@ -1,0 +1,313 @@
+/* ============================================================
+   RESPONSIVE DESIGN & LAYOUT UTILITIES
+   ============================================================ */
+
+/* Container Utilities */
+.container {
+  width: 100%;
+  padding: 0 24px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Spacing Utilities */
+.mt-0 { margin-top: 0; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+
+.p-0 { padding: 0; }
+.p-8 { padding: 8px; }
+.p-12 { padding: 12px; }
+.p-16 { padding: 16px; }
+.p-20 { padding: 20px; }
+.p-24 { padding: 24px; }
+
+/* Gap Utilities */
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.gap-24 { gap: 24px; }
+
+/* Text Utilities */
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.85rem; }
+.text-base { font-size: 0.95rem; }
+.text-lg { font-size: 1.1rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+
+.text-primary { color: #0f172a; }
+.text-secondary { color: #475569; }
+.text-muted { color: #94a3b8; }
+.text-success { color: #16a34a; }
+.text-error { color: #dc2626; }
+.text-warning { color: #ea580c; }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* Display Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+
+.hidden { display: none; }
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+
+/* Visibility Utilities */
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+
+/* Overflow Utilities */
+.overflow-auto { overflow: auto; }
+.overflow-hidden { overflow: hidden; }
+.overflow-x-auto { overflow-x: auto; }
+
+/* Shadow Utilities */
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.shadow {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+/* Border Utilities */
+.border { border: 1px solid #e5e7eb; }
+.border-t { border-top: 1px solid #e5e7eb; }
+.border-b { border-bottom: 1px solid #e5e7eb; }
+.border-l { border-left: 1px solid #e5e7eb; }
+.border-r { border-right: 1px solid #e5e7eb; }
+
+.border-primary { border-color: #166534; }
+.border-secondary { border-color: #cbd5e1; }
+
+/* Rounded Utilities */
+.rounded { border-radius: 8px; }
+.rounded-md { border-radius: 12px; }
+.rounded-lg { border-radius: 16px; }
+.rounded-full { border-radius: 9999px; }
+
+/* Background Utilities */
+.bg-white { background-color: #ffffff; }
+.bg-gray-50 { background-color: #f8fafb; }
+.bg-gray-100 { background-color: #f1f5f9; }
+.bg-green-50 { background-color: #f0fdf4; }
+.bg-green-100 { background-color: #dcfce7; }
+.bg-red-50 { background-color: #fef2f2; }
+.bg-blue-50 { background-color: #e0f2fe; }
+
+.bg-primary { background: linear-gradient(135deg, #166534 0%, #22c55e 100%); }
+.bg-primary-light { background-color: #ecfdf3; }
+.bg-secondary { background-color: #f1f5f9; }
+
+/* Grid Utilities */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: 1fr; }
+.grid-cols-2 { grid-template-columns: 1fr 1fr; }
+.grid-cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid-cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+/* Width & Height Utilities */
+.w-full { width: 100%; }
+.w-1\/2 { width: 50%; }
+.h-full { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+
+/* Z-index Utilities */
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.z-50 { z-index: 50; }
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* Mobile First Approach */
+
+/* Small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .hidden-mobile {
+    display: none !important;
+  }
+
+  .show-mobile {
+    display: block !important;
+  }
+
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .flex-col-mobile {
+    flex-direction: column;
+  }
+
+  .text-xs-mobile {
+    font-size: 0.75rem;
+  }
+
+  .p-mobile {
+    padding: 12px;
+  }
+
+  .gap-mobile {
+    gap: 12px;
+  }
+}
+
+/* Medium devices (tablets, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hidden-tablet {
+    display: none !important;
+  }
+
+  .show-tablet {
+    display: block !important;
+  }
+
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Large devices (desktops, 768px and up) */
+@media (min-width: 768px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+
+  .show-desktop {
+    display: block !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background-color: #ffffff;
+  }
+
+  .shadow,
+  .shadow-sm,
+  .shadow-lg {
+    box-shadow: none;
+  }
+}
+
+/* ============================================================
+   DARK MODE SUPPORT (Future)
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  .text-primary {
+    color: #f1f5f9;
+  }
+
+  .text-secondary {
+    color: #cbd5e1;
+  }
+
+  .bg-white {
+    background-color: #1e293b;
+  }
+
+  .border {
+    border-color: #334155;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  .border {
+    border-width: 2px;
+  }
+
+  .text-muted {
+    color: #000000;
+  }
+}
+
+/* Focus Visible for Keyboard Navigation */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #166534;
+  outline-offset: 2px;
+}

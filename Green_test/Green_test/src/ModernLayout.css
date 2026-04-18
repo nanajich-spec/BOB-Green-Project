@@ -1,0 +1,46 @@
+:root {
+  --shell-sidebar-width: 260px;
+  --shell-header-height: 76px;
+  --shell-content-gutter: 20px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.p-datatable {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.Admin-datatable,
+.custom-datatable.p-datatable {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+.container1 {
+  padding-bottom: 24px;
+}
+
+.checker-container {
+  min-height: auto;
+}
+
+.p-button-help {
+  margin-right: 0 !important;
+}
+
+.p-card {
+  border-radius: 8px !important;
+  padding: 16px;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  font-size: 13px;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  font-size: 13px;
+  font-weight: 600;
+}

@@ -1,0 +1,22 @@
+name: restructure-frontend-project-structure
+description: Complete restructuring of the frontend project with proper folder organization, consistent navigation, and centralized component/styling architecture
+created: 2026-04-18
+status: proposed
+artifacts:
+  - id: proposal
+    type: proposal
+    name: proposal.md
+    status: done
+  - id: design
+    type: design
+    name: design.md
+    status: done
+  - id: tasks
+    type: tasks
+    name: tasks.md
+    status: done
+apply:
+  requires:
+    - proposal
+    - design
+    - tasks

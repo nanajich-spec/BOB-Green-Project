@@ -1,0 +1,102 @@
+.sidebar {
+  width: 14rem;
+  background: linear-gradient(180deg, #166534 0%, #14532d 100%);
+  color: white;
+    height: 100%;
+  padding: 20px 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  border-radius: 0 18px 18px 0;
+  box-shadow: 8px 0 22px rgba(15, 23, 42, 0.18);
+    
+  }
+   
+  .sidebar h2 {
+    color: #ecf0f1;
+    margin-bottom: 30px;
+  }
+   
+  .sidebar ul {
+    list-style: none;
+    padding-left: 0;
+  }
+   
+  .sidebar ul li {
+    margin: 15px 0;
+  }
+   
+  .sidebar ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    display: block;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: all 0.3s ease; 
+  }
+   
+  .sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    transform: translateY(-1px);
+    border: none;
+  }
+   
+  .main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+  }
+   
+  .content h1 {
+    margin-bottom: 20px;
+  }
+   
+  .content p {
+    font-size: 16px;
+  }
+
+  .submenu {
+    list-style-type: none;
+    position: relative;
+    top: auto;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+  }
+   
+  .submenu li {
+    padding: 10px;
+  }
+   
+  .submenu li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .sidebar ul li a.active {
+    background: #ffffff;
+    color: #14532d;
+    font-weight: bold;
+    transform: translateY(-1px);
+    border-radius: 10px;
+  }
+   
+  .submenu li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+   
+  .submenu li:last-child {
+    border-bottom: none;
+  }
+  .logo2{
+    height: 70%;
+    width: 70%;
+    background-color: transparent;
+  }
